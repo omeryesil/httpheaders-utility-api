@@ -1,0 +1,43 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "v1.0",
+    "title": "HttpHeaders Utility Api",
+    "description": "",
+    "termsOfService": "None",
+    "contact": {
+      "name": ".. ..",
+      "url": "",
+      "email": ""
+    },
+    "license": {
+      "name": "",
+      "url": ""
+    }
+  },
+  "basePath": "/utility-api",
+  "paths": {
+    "/v1/httpheaders": {
+      "get": {
+        "summary": "Returns list of  HttpOnly Cookie with JWT",
+        "description": "sample request:\r\n            \r\n    GET /httpheaders",
+        "operationId": "GetHttpHeaders",
+        "consumes": [],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Returns list of headers"
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        }
+      }     
+    }
+  }
+}
