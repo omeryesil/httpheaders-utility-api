@@ -1,0 +1,45 @@
+<html>
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <style>
+        .label {width: 200px;}
+    </style>
+</head>
+
+<body>
+    <h1>Test - HttpHeaders Utility Api</h1>
+    <p>
+        <label class="label">Service Url</label><br/>
+        <input type="text" id="serviceUrl" value="http://localhost:5000/v1/httpheaders" style="width: 600px;"/>
+    </p>
+    <p>
+        [<a href="javascript:void()" onclick="getAllHeaders()">GetAllHeaders</a>] <i>Returns All Headers</i><br/>
+    </p>
+    <p>
+        <label class="label">RESPONSE</label><br/>
+        <textarea id="result" rows="4" cols="50" style="width: 600px;"></textarea>
+    </p>
+</body>
+
+<script lang="javascript">
+    function getAllHeaders() {
+        var serviceUrl = $("#serviceUrl").val();
+
+        $.ajax({
+         url: serviceUrl,
+         type: "GET",
+         headers:{'TEST_HEADER':'TEST VALUE'},  
+         crossDomain: true,         
+         success: function(res) { 
+            $("#result").val(JSON.stringify(res));
+         },
+         error: function(error) {
+            $("#result").val(JSON.stringify(error));
+         }
+        });
+    }
+</script>
+
+
+</html>

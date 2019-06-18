@@ -39,47 +39,35 @@ app.use(function(req, res, next) {
     next();
 });
 
-//Create a cookie
-app.get("/v1/cookie", function (req, res) {        
+//Returns all http headers
+app.get("/v1/httpheaders", function (req, res) {        
     //signed and not signed cookies
     //console.log('Not signed Cookies: ', req.cookies);
     //console.log('Signed Cookies: ', req.signedCookies);
 
-    var authToken = utility.GetToken(req);
+    var allHeaders = utility.GetAllHeaders(req);
 
-    if (authToken == null) {     
-        var error = utility.CreateError("Authorization header is missing");
+    if (allHeaders == null) {     
+        var error = utility.CreateError("No headers found");
         console.log(chalk.red('ERROR:' + error._message + ' (' +  utility.GetClientHost(req) + ')'));    
         res.status(400).send(error);    
         return;
-    }
-    
-    res.cookie(settings.cookie.name, authToken, { httpOnly: true });
+    }  
 
-    console.log(settings.cookie.name + " has been created by " + utility.GetClientHost(req));
-
-    res.json('{"result": "success"}');
-});
-
-//Delete the cookie
-app.delete("/v1/cookie", (req, res, next   ) => {
-    res.clearCookie(settings.cookie.name);
-
-    console.log(settings.cookie.name + " has been deleted by " + utility.GetClientHost(req));
-    res.status(204);
+    res.json(allHeaders);
 });
 
 app.get("/v1/test/", function (req, res) {        
     res.sendFile(path.join(__dirname + '/test/test.html'));
 });
-
+3
 app.get("/swagger/v1/swagger.json", function (req, res) {        
     res.sendFile(path.join(__dirname + '/swagger.json'));
 });
 
 //start the server
 app.listen(settings.server.port, settings.server.host, () => {
-    console.log("Bim Auth Api --------------------------------------");
+    console.log("HttpHeaders-Utility api ---------------------------------");
     console.log("Server running on port " + settings.server.port);
 });
 
