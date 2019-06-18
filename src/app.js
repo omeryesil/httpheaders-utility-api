@@ -41,9 +41,6 @@ app.use(function(req, res, next) {
 
 //Returns all http headers
 app.get("/v1/httpheaders", function (req, res) {        
-    //signed and not signed cookies
-    //console.log('Not signed Cookies: ', req.cookies);
-    //console.log('Signed Cookies: ', req.signedCookies);
 
     var allHeaders = utility.GetAllHeaders(req);
 

@@ -1,0 +1,36 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: httpheaders-utility-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: httpheaders-utility-api
+  template:
+    metadata:
+      labels:
+        app: httpheaders-utility-api
+    spec:
+      containers:
+      - image: oyesil/httpheaders-utility-api:latest
+        imagePullPolicy: Always
+        name: httpheaders-utility-api
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: httpheaders-utility-api
+spec:
+  ports:
+  - name: http
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: httpheaders-utility-api

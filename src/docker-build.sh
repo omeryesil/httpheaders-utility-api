@@ -1,0 +1,1 @@
+docker build -t oyesil/httpheaders-utility-api:latest .

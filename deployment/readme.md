@@ -1,4 +1,4 @@
 # Deployment
 
-Sample K8s deployment 
+Simple K8s deployment ..
 
